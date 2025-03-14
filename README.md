@@ -8,7 +8,7 @@ Here’s how you can write it in English in your `README.md`:
 To install and run the `cats` program, execute the following command in your terminal:
 
 ```bash
-bash -c "$(curl -fsSL https://github.com/luminetai/cats/raw/main/install.sh)"
+curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/install.sh | sudo bash
 ```
 
 This command will automatically download and install the necessary files on your computer and create a symbolic link for easy access to the program.
