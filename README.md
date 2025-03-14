@@ -3,7 +3,6 @@ A utility inspired by the playful nature of little cats, who love knocking thing
 
 Here’s how you can write it in English in your `README.md`:
 
-```markdown
 ## Installation and Usage
 
 To install and run the `cats` program, execute the following command in your terminal:
