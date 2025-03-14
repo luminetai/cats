@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Скачать и установить зависимости
+# Функция для установки зависимостей
 install_dependencies() {
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Установка xclip для Linux
-    echo "Installing xclip on Linux..."
+    # Установка зависимостей для Linux
+    echo "Installing dependencies for Linux..."
     sudo apt-get update
-    sudo apt-get install -y xclip
+    sudo apt-get install -y xclip xsel
   elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Установка pbcopy для macOS
-    echo "Installing pbcopy on macOS..."
+    # Установка зависимостей для macOS
+    echo "Installing dependencies for macOS..."
     brew install pbcopy
   else
     echo "Unsupported OS. Only Linux and macOS are supported."
@@ -17,7 +17,7 @@ install_dependencies() {
   fi
 }
 
-# Установка скрипта cats
+# Функция для установки скрипта cats
 install_cats() {
   echo "Installing cats script..."
   sudo curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/cats.sh -o /usr/local/bin/cats
