@@ -9,12 +9,17 @@ create_catsread() {
 # Функция для копирования содержимого файлов в буфер обмена
 copy_to_clipboard() {
   xargs -a .catsread cat | {
-    if command -v xclip &>/dev/null; then
+    if command -v xclip &>/dev/null && DISPLAY=:0; then
+      # Если доступен xclip и существует X-сервер
       xclip -selection clipboard
     elif command -v pbcopy &>/dev/null; then
+      # Для macOS
       pbcopy
+    elif command -v xsel &>/dev/null; then
+      # Для Linux, если xclip не доступен
+      xsel --clipboard --input
     else
-      echo "Error: Neither xclip nor pbcopy found, unable to copy to clipboard."
+      echo "Error: Neither xclip, xsel, nor pbcopy found, unable to copy to clipboard."
       exit 1
     fi
   }
