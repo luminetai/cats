@@ -15,7 +15,7 @@ This command will automatically download and install the necessary files on your
 
 Once installed, you can use the `cats` command to perform tasks.
 
-### Usage Examples
+## Usage Examples
 
 **By default**, to copy the content of the files listed in `.catsread` to the clipboard:
 
