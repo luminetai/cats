@@ -11,7 +11,7 @@ fi
 
 # Скачиваем скрипт в /usr/local/bin
 echo "Устанавливаю cats..."
-curl -fsSL https://github.com/luminetai/cats/raw/main/cats -o "$CATS_PATH"
+curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/cats.sh -o "$CATS_PATH"
 
 # Делаем его исполняемым
 chmod +x "$CATS_PATH"
