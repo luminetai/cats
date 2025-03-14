@@ -1,19 +1,25 @@
 #!/bin/bash
 
-# Устанавливаем путь для скрипта cats
-CATS_DIR="$HOME/.cats"
-CATS_SCRIPT="$CATS_DIR/cats.sh"
+# Скачиваем cats в /usr/local/bin
+CATS_PATH="/usr/local/bin/cats"
 
-# Создаем директорию для установки
-mkdir -p "$CATS_DIR"
+# Проверяем, существует ли уже cats
+if [ -f "$CATS_PATH" ]; then
+  echo "cats уже установлен."
+  exit 0
+fi
 
-# Качаем скрипт с GitHub
-curl -sSL https://github.com/username/repository/raw/main/cats.sh -o "$CATS_SCRIPT"
+# Скачиваем скрипт в /usr/local/bin
+echo "Устанавливаю cats..."
+curl -fsSL https://github.com/luminetai/cats/raw/main/cats -o "$CATS_PATH"
 
-# Делаем скрипт исполнимым
-chmod +x "$CATS_SCRIPT"
+# Делаем его исполняемым
+chmod +x "$CATS_PATH"
 
-# Создаем символьную ссылку в /usr/local/bin для удобного вызова
-ln -s "$CATS_SCRIPT" /usr/local/bin/cats
-
-echo "cats успешно установлен. Теперь вы можете использовать команду cats в терминале."
+# Проверяем успешность установки
+if command -v cats >/dev/null 2>&1; then
+  echo "cats успешно установлен!"
+else
+  echo "Ошибка установки cats."
+  exit 1
+fi
