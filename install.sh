@@ -1,25 +1,43 @@
 #!/bin/bash
 
-# Скачиваем cats в /usr/local/bin
-CATS_PATH="/usr/local/bin/cats"
+# Функция для установки зависимостей в зависимости от операционной системы
+install_dependencies() {
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Для Linux устанавливаем xclip
+    echo "Linux detected. Installing xclip..."
+    sudo apt-get update
+    sudo apt-get install -y xclip
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # Для macOS устанавливаем pbcopy
+    echo "macOS detected. Installing pbcopy..."
+    brew install pbcopy
+  else
+    echo "Error: Unsupported OS. Only Linux and macOS are supported."
+    exit 1
+  fi
+}
 
-# Проверяем, существует ли уже cats
-if [ -f "$CATS_PATH" ]; then
-  echo "cats уже установлен."
-  exit 0
-fi
+# Функция для установки скрипта cats
+install_cats() {
+  echo "Installing cats script..."
 
-# Скачиваем скрипт в /usr/local/bin
-echo "Устанавливаю cats..."
-curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/cats.sh -o "$CATS_PATH"
+  # Скачиваем cats.sh в /usr/local/bin
+  sudo curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/cats.sh -o /usr/local/bin/cats
 
-# Делаем его исполняемым
-chmod +x "$CATS_PATH"
+  # Делаем файл исполнимым
+  sudo chmod +x /usr/local/bin/cats
 
-# Проверяем успешность установки
-if command -v cats >/dev/null 2>&1; then
-  echo "cats успешно установлен!"
-else
-  echo "Ошибка установки cats."
-  exit 1
-fi
+  echo "cats installed successfully. You can now use the 'cats' command."
+}
+
+# Основная функция установки
+main_install() {
+  # Устанавливаем зависимости
+  install_dependencies
+
+  # Устанавливаем cats
+  install_cats
+}
+
+# Запуск основной функции
+main_install
