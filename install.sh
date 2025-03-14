@@ -3,14 +3,11 @@
 # Функция для установки зависимостей
 install_dependencies() {
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Установка зависимостей для Linux
-    echo "Installing dependencies for Linux..."
-    sudo apt-get update
-    sudo apt-get install -y xclip xsel
+    # Для Linux можно оставить только базовые утилиты, если они требуются.
+    echo "No dependencies needed for Linux."
   elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Установка зависимостей для macOS
-    echo "Installing dependencies for macOS..."
-    brew install pbcopy
+    # Для macOS, если ничего не нужно, просто выводим сообщение.
+    echo "No dependencies needed for macOS."
   else
     echo "Unsupported OS. Only Linux and macOS are supported."
     exit 1
