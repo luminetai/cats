@@ -1,28 +1,14 @@
 #!/bin/bash
 
-# Функция для создания .catsread
-create_catsread() {
+# Функция для создания .cats
+create_cats() {
   local directory="$1"
-  find "$directory" -type f > .catsread
+  find "$directory" -type f > .cats
 }
 
-# Функция для копирования содержимого файлов в буфер обмена
-copy_to_clipboard() {
-  xargs -a .catsread cat | {
-    if command -v xclip &>/dev/null && DISPLAY=:0; then
-      # Если доступен xclip и существует X-сервер
-      xclip -selection clipboard
-    elif command -v pbcopy &>/dev/null; then
-      # Для macOS
-      pbcopy
-    elif command -v xsel &>/dev/null; then
-      # Для Linux, если xclip не доступен
-      xsel --clipboard --input
-    else
-      echo "Error: Neither xclip, xsel, nor pbcopy found, unable to copy to clipboard."
-      exit 1
-    fi
-  }
+# Функция для сохранения содержимого файлов в .cats
+save_to_file() {
+  xargs -a .cats cat > .cats
 }
 
 # Основная логика
@@ -31,28 +17,30 @@ cats() {
   local directory="${2:-.}"
 
   if [ "$create_file" = "true" ]; then
-    create_catsread "$directory"
+    create_cats "$directory"
   fi
 
-  # Проверка наличия .catsread
-  if [ ! -f .catsread ]; then
-    echo "Error: .catsread not found."
+  # Проверка наличия .cats
+  if [ ! -f .cats ]; then
+    echo "Error: .cats not found."
     exit 1
   fi
 
-  # Копирование содержимого файлов в буфер обмена
-  copy_to_clipboard
+  # Сохранение содержимого файлов в .cats
+  save_to_file
+
+  echo "Content saved to .cats. You can view it with 'cat .cats' or 'less .cats'."
 }
 
 # Обработка флагов
 case "$1" in
   -r)
-    cats true "$2"  # Включаем создание .catsread с флагом -r
+    cats true "$2"  # Включаем создание .cats с флагом -r
     ;;
   -w)
-    cats false "$2"  # Пропускаем создание .catsread с флагом -w
+    cats false "$2"  # Пропускаем создание .cats с флагом -w
     ;;
   *)
-    cats "$1" "$2"  # По умолчанию выполняем копирование содержимого в буфер обмена
+    cats "$1" "$2"  # По умолчанию сохраняем содержимое в .cats
     ;;
 esac
