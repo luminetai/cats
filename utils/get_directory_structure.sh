@@ -56,6 +56,7 @@ get_directory_structure() {
     elif [ -f "$current_item" ]; then
       output+="${name}:${perm}{"
       fileContent=$(get_file_contents "$current_item" 2>/dev/null)
+      #echo "File content before cleaning: $fileContent" >> debug_output.txt
       fileContent=$(clean_string "$fileContent")
       output+="${fileContent}"
       output+="}"
