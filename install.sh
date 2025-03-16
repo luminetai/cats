@@ -17,6 +17,12 @@ fi
 echo "Cloning repository from GitHub..."
 git clone https://github.com/luminetai/cats.git "$PROJECT_DIR" && echo "Repository successfully cloned." || { echo "Error cloning repository."; exit 1; }
 
+# Ensure the cats.sh file exists
+if [ ! -f "$PROJECT_DIR/cats.sh" ]; then
+    echo "cats.sh script is missing. Something went wrong with the cloning process."
+    exit 1
+fi
+
 # Adding alias to .bashrc or .zshrc
 SHELL_CONFIG_FILE="$HOME/.bashrc"
 if ! grep -q "alias cats" "$SHELL_CONFIG_FILE"; then
@@ -27,7 +33,8 @@ else
 fi
 
 # Making the cats.sh script executable
-chmod +x "$PROJECT_DIR/cats.sh"
+echo "Adding execution permissions to the cats.sh script..."
+chmod +x "$PROJECT_DIR/cats.sh" && echo "Permissions added successfully." || { echo "Failed to add execution permissions."; exit 1; }
 
 # Instructions for applying the alias
 echo "Restart the terminal or run 'source ~/.bashrc' to apply the alias."
