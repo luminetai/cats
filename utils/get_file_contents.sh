@@ -1,5 +1,3 @@
-#!/bin/bash
-
 get_file_contents() {
   local file="$1"
 
@@ -13,11 +11,11 @@ get_file_contents() {
     return 1
   fi
 
-  local content
-  content=$(< "$file")
-
-  # Убираем нулевые байты
-  content=$(echo "$content" | tr -d '\000')
+  # Используем read с разделителем null-байтов
+  local content=""
+  while IFS= read -r -d '' line; do
+    content+="$line"
+  done < "$file"
 
   echo "$content"
 }
