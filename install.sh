@@ -1,35 +1,34 @@
-#!/bin/bash
-
-# Функция для установки зависимостей
-install_dependencies() {
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    # Для Linux можно оставить только базовые утилиты, если они требуются.
-    echo "No dependencies needed for Linux."
-  elif [[ "$OSTYPE" == "darwin"* ]]; then
-    # Для macOS, если ничего не нужно, просто выводим сообщение.
-    echo "No dependencies needed for macOS."
-  else
-    echo "Unsupported OS. Only Linux and macOS are supported."
+# Checking for git
+if ! command -v git &>/dev/null; then
+    echo "Git is not installed! Please install git."
     exit 1
-  fi
-}
+fi
 
-# Функция для установки скрипта cats
-install_cats() {
-  echo "Installing cats script..."
-  sudo curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/cats.sh -o /usr/local/bin/cats
-  sudo chmod +x /usr/local/bin/cats
-  echo "cats successfully installed!"
-}
+# Hidden directory for cloning (instead of $HOME/cats we use $HOME/.cats)
+PROJECT_DIR="$HOME/.cats"
 
-# Основная установка
-main_install() {
-  # Установка зависимостей
-  install_dependencies
-  
-  # Установка cats
-  install_cats
-}
+# Removing old directory .cats if it exists
+if [ -d "$PROJECT_DIR" ]; then
+    echo "Removing old directory $PROJECT_DIR..."
+    rm -rf "$PROJECT_DIR"
+fi
 
-# Выполнение всего процесса
-main_install
+# Cloning the project
+echo "Cloning repository from GitHub..."
+git clone https://github.com/luminetai/cats.git "$PROJECT_DIR" && echo "Repository successfully cloned." || { echo "Error cloning repository."; exit 1; }
+
+# Adding alias to .bashrc or .zshrc
+SHELL_CONFIG_FILE="$HOME/.bashrc"
+if ! grep -q "alias cats" "$SHELL_CONFIG_FILE"; then
+    echo "alias cats='$PROJECT_DIR/cats.sh'" >> "$SHELL_CONFIG_FILE"
+    echo "Alias 'cats' added to $SHELL_CONFIG_FILE"
+else
+    echo "Alias 'cats' already exists."
+fi
+
+# Making the cats.sh script executable
+chmod +x "$PROJECT_DIR/cats.sh"
+
+# Instructions for applying the alias
+echo "Restart the terminal or run 'source ~/.bashrc' to apply the alias."
+echo "Now you can use the 'cats' command in the terminal."
