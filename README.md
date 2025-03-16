@@ -19,15 +19,18 @@ This command will automatically download and install the necessary files on your
 
 Once installed, you can use the `cats` command to perform tasks.
 
+---
+
 ## Help and Flags
 
 The `cats` program accepts several flags that control its behavior. You can pass one, two, or even three flags in any order. If no flags are provided, the program will execute all actions by default.
 
 ### Available Flags:
-- **D**: Get directory structure
-- **N**: Get network information
-- **S**: Get system information
-- **U**: Get user information
+- **-d, --directory**: Get directory structure
+- **-n, --network**: Get network information
+- **-s, --system**: Get system information
+- **-u, --user**: Get user information
+- **-h, --help**: Show help
 
 ### Usage Examples:
 
@@ -40,16 +43,18 @@ cats
 **With a single flag**:  
 You can pass a single flag to execute a specific action:
 ```bash
-cats D
-cats N
-cats S
-cats U
+cats -d
+cats -n
+cats -s
+cats -u
 ```
 
 **With multiple flags**:  
 You can pass multiple flags to execute different actions in any order:
 ```bash
-cats DN
-cats NS
-cats UDS
+cats -dn
+cats -ns
+cats -uds
 ```
+
+---
