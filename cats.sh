@@ -5,14 +5,17 @@ STRUCTURE_PREFIX="structure:"
 CONTENT_PREFIX="content:"
 DEFAULT_FLAGS="DNSU"
 
+# Получаем путь к директории, где находится cats.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Подключаем файлы с функциями
-source "./utils/clean_string.sh"
-source "./utils/get_directory_items.sh"
-source "./utils/get_directory_structure.sh"
-source "./utils/get_network_info.sh"
-source "./utils/get_user_info.sh"
-source "./utils/get_system_info.sh"
-source "./utils/write_to_file.sh"
+source "$SCRIPT_DIR/utils/clean_string.sh"
+source "$SCRIPT_DIR/utils/get_directory_items.sh"
+source "$SCRIPT_DIR/utils/get_directory_structure.sh"
+source "$SCRIPT_DIR/utils/get_network_info.sh"
+source "$SCRIPT_DIR/utils/get_user_info.sh"
+source "$SCRIPT_DIR/utils/get_system_info.sh"
+source "$SCRIPT_DIR/utils/write_to_file.sh"
 
 # Функция помощи, выводит доступные флаги
 help() {
