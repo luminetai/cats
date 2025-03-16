@@ -1,46 +1,54 @@
 #!/bin/bash
 
-# Функция для создания .cats
-create_cats() {
-  local directory="$1"
-  find "$directory" -type f > .cats
+OUTPUT_FILE=".cats"
+STRUCTURE_PREFIX="structure:"
+CONTENT_PREFIX="content:"
+DEFAULT_FLAGS="DNSU"
+
+# Подключаем файлы с функциями
+source "./utils/clean_string.sh"
+source "./utils/get_directory_items.sh"
+source "./utils/get_directory_structure.sh"
+source "./utils/get_network_info.sh"
+source "./utils/get_user_info.sh"
+source "./utils/get_system_info.sh"
+source "./utils/write_to_file.sh"
+
+# Функция помощи, выводит доступные флаги
+help() {
+  echo "Available flags:"
+  echo "- D : Get directory structure"
+  echo "- N : Get network information"
+  echo "- S : Get system information"
+  echo "- U : Get user information"
 }
 
-# Функция для сохранения содержимого файлов в .cats
-save_to_file() {
-  xargs -a .cats cat > .cats
+# Основная функция для обработки флагов и вызова функций
+get_directory_context() {
+  local flags="${1:-$DEFAULT_FLAGS}" 
+  local output=""
+
+  for flag in $(echo "$flags" | fold -w1); do
+    case $flag in
+      D) output+=$(get_directory_structure);;
+      N) output+=$(get_network_info);;
+      S) output+=$(get_system_info);;
+      U) output+=$(get_user_info);;
+      *) 
+        echo "Error: Invalid flag: $flag"
+        help
+        return 1
+        ;;
+    esac
+  done
+
+  output=$(clean_string "$output")
+  write_to_file "$OUTPUT_FILE" "$output"
 }
 
-# Основная логика
+# Основная функция вызова с передачей флага
 cats() {
-  local create_file="${1:-true}"
-  local directory="${2:-.}"
-
-  if [ "$create_file" = "true" ]; then
-    create_cats "$directory"
-  fi
-
-  # Проверка наличия .cats
-  if [ ! -f .cats ]; then
-    echo "Error: .cats not found."
-    exit 1
-  fi
-
-  # Сохранение содержимого файлов в .cats
-  save_to_file
-
-  echo "Content saved to .cats. You can view it with 'cat .cats' or 'less .cats'."
+  get_directory_context "$1"
 }
 
-# Обработка флагов
-case "$1" in
-  -r)
-    cats true "$2"  # Включаем создание .cats с флагом -r
-    ;;
-  -w)
-    cats false "$2"  # Пропускаем создание .cats с флагом -w
-    ;;
-  *)
-    cats "$1" "$2"  # По умолчанию сохраняем содержимое в .cats
-    ;;
-esac
+cats "$@"
