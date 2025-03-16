@@ -13,5 +13,5 @@ get_file_contents() {
     return 1
   fi
   
-  #cat "$file"
+  cat "$file"
 }
