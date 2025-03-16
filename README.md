@@ -12,7 +12,7 @@ Here’s how you can write it in English in your `README.md`:
 To install and run the `cats` program, execute the following command in your terminal:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/luminetai/cats/main/install.sh | bash
 ```
 
 This command will automatically download and install the necessary files on your computer and create a symbolic link for easy access to the program.
