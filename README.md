@@ -1,5 +1,5 @@
 # cats
-A utility inspired by the playful nature of little cats, who love knocking things off shelves. Similarly, this tool helps send files directly to your clipboard, simplifying and improving your workflow.
+A utility named after my little cats, who love cleaning up on my tables, shelves, and cabinets. They knock all the unnecessary things off onto the floor, leaving only the most important and useful ones. This utility works in the same way: it helps send only the necessary files and data to your clipboard, keeping your workflow clean and focused on the important parts of development.
 
 Here’s how you can write it in English in your `README.md`:
 
