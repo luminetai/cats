@@ -7,7 +7,7 @@ The `cats` utility helps extract and provide relevant context about the file sys
 # cats
 A utility named after my little cats, who love cleaning up on my tables, shelves, and cabinets. They knock all the unnecessary things off onto the floor, leaving only the most important and useful ones. This utility works in the same way: it helps send only the necessary files and data to your clipboard, keeping your workflow clean and focused on the important parts of development.
 
-![Alt text](cats.gif)
+![cats](cats.gif)
 
 ## Installation and Usage
 
@@ -22,6 +22,8 @@ This command will automatically download and install the necessary files on your
 Once installed, you can use the `cats` command to perform tasks.
 
 ---
+
+![install](install.gif)
 
 ## Help and Flags
 
