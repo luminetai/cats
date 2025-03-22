@@ -1,24 +1,23 @@
 #!/bin/bash
 
 get_python_packages() {
-  local packages package_list package_info
+  local packages package_list name version
 
-  # Получаем список установленных библиотек в формате "package==version"
-  packages=$(pip list --format=freeze)
+  # Получаем список установленных пакетов через pip freeze
+  packages=$(pip freeze)
+
+  # Инициализируем переменную для списка пакетов
+  package_list=""
 
   # Преобразуем список в требуемый формат
-  package_list=""
   while IFS= read -r package; do
-    name=$(echo "$package" | cut -d= -f1)
-    version=$(echo "$package" | cut -d= -f2)
-    package_list+="$name:$version,"
+    # Заменяем "==" на ":" для нужного формата
+    package_list+="${package//==/:},"
   done <<< "$packages"
 
   # Убираем последнюю запятую
   package_list="${package_list%,}"
 
-  # Формируем JSON-подобный вывод
-  package_info="{installed_packages:{$package_list}}"
-  
-  echo "{get_python_packages:$package_info}"
+  # Формируем вывод в нужном формате
+  echo "{get_python_packages:{$package_list}}"
 }
