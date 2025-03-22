@@ -35,7 +35,7 @@ The `cats` program accepts several flags that control its behavior. You can pass
 - **-s, --system**: Get system information  
 - **-u, --user**: Get user information  
 - **-p, --python-packages**: Get installed Python packages  
-- **-a, --all-packages**: Get all installed packages (APT, Snap, Flatpak, etc.)  
+- **-a, --all-packages**: Get all installed packages 
 - **-h, --help**: Show help  
 
 ### Usage Examples:  
