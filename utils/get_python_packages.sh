@@ -4,7 +4,7 @@ get_python_packages() {
   local packages package_list
 
   # Путь к виртуальному окружению
-  VENV_DIR="./venv"
+  VENV_DIR="./.venv"
 
   # Проверяем, существует ли виртуальное окружение
   if [[ ! -d "$VENV_DIR" || ! -f "$VENV_DIR/bin/activate" ]]; then
