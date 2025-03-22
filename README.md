@@ -1,7 +1,5 @@
 ![Cat Image](https://github.com/luminetai/cats/blob/main/cats.png)
-# Concept Project:
-
-This project is currently a concept. It serves as an early-stage exploration of a potential tool for gathering and organizing system information. The goal is to prototype different functionalities and evaluate their feasibility before developing a fully-fledged utility.
+`Concept Project: This project is currently a concept. It serves as an early-stage exploration of a potential tool for gathering and organizing system information. The goal is to prototype different functionalities and evaluate their feasibility before developing a fully-fledged utility.`
 
 
 # AI Utilities Toolkit
