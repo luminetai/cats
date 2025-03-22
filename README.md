@@ -25,40 +25,43 @@ Once installed, you can use the `cats` command to perform tasks.
 
 ![install](install.gif)
 
-## Help and Flags
+## Help and Flags  
 
-The `cats` program accepts several flags that control its behavior. You can pass one, two, or even three flags in any order. If no flags are provided, the program will execute all actions by default.
+The `cats` program accepts several flags that control its behavior. You can pass one, two, or even more flags in any order. If no flags are provided, the program will execute all actions by default.  
 
-### Available Flags:
-- **-d, --directory**: Get directory structure
-- **-n, --network**: Get network information
-- **-s, --system**: Get system information
-- **-u, --user**: Get user information
-- **-h, --help**: Show help
+### Available Flags:  
+- **-d, --directory**: Get directory structure  
+- **-n, --network**: Get network information  
+- **-s, --system**: Get system information  
+- **-u, --user**: Get user information  
+- **-p, --python-packages**: Get installed Python packages  
+- **-a, --all-packages**: Get all installed packages (APT, Snap, Flatpak, etc.)  
+- **-h, --help**: Show help  
 
-### Usage Examples:
+### Usage Examples:  
 
 **Without flags**:  
-Running the `cats` command without any flags will execute all available actions:
+Running the `cats` command without any flags will execute all available actions:  
 ```bash
 cats
 ```
 
 **With a single flag**:  
-You can pass a single flag to execute a specific action:
+You can pass a single flag to execute a specific action:  
 ```bash
 cats -d
 cats -n
 cats -s
 cats -u
+cats -p
+cats -a
 ```
 
 **With multiple flags**:  
-You can pass multiple flags to execute different actions in any order:
+You can pass multiple flags to execute different actions in any order:  
 ```bash
-cats -dn
-cats -ns
-cats -uds
+cats -dns
+cats -up
+cats -apd
+cats -unsa
 ```
-
----
