@@ -2,7 +2,7 @@
 `Concept Project: This project is currently a concept. It serves as an early-stage exploration of a potential tool for gathering and organizing system information. The goal is to prototype different functionalities and evaluate their feasibility before developing a fully-fledged utility.`
 
 
-# AI Utilities Toolkit
+# 🐾AI Utilities Toolkit
 
 The `cats` utility helps extract and provide relevant context about the file system structure, operating system, network, and user to facilitate better interactions with artificial intelligence, ensuring it can make more accurate and context-aware decisions during development.
 
