@@ -2,11 +2,11 @@
 `Concept Project: This project is currently a concept. It serves as an early-stage exploration of a potential tool for gathering and organizing system information. The goal is to prototype different functionalities and evaluate their feasibility before developing a fully-fledged utility.`
 
 
-# 🐾AI Utilities Toolkit
+# AI Utilities Toolkit
 
 The `cats` utility helps extract and provide relevant context about the file system structure, operating system, network, and user to facilitate better interactions with artificial intelligence, ensuring it can make more accurate and context-aware decisions during development.
 
-# cats
+# 🐾cats
 A utility named after my little cats, who love cleaning up on my tables, shelves, and cabinets. They knock all the unnecessary things off onto the floor, leaving only the most important and useful ones. This utility works in the same way: it helps send only the necessary files and data to your clipboard, keeping your workflow clean and focused on the important parts of development.
 
 ![cats](cats.gif)
