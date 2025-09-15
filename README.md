@@ -7,6 +7,8 @@
 The `cats` utility helps extract and provide relevant context about the file system structure, operating system, network, and user to facilitate better interactions with artificial intelligence, ensuring it can make more accurate and context-aware decisions during development.
 
 # 🐾cats
+The Cats utility is designed to create a complete context of a project and provide it to AI tools, making the entire project environment clear and enabling seamless discussions with artificial intelligence within that context.
+
 A utility named after my little cats, who love cleaning up on my tables, shelves, and cabinets. They knock all the unnecessary things off onto the floor, leaving only the most important and useful ones. This utility works in the same way: it helps send only the necessary files and data to your clipboard, keeping your workflow clean and focused on the important parts of development.
 
 ![cats](cats.gif)
